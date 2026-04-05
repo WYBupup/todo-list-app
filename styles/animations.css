@@ -1,0 +1,227 @@
+/* 任务卡片进入动画 */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 任务卡片删除动画 */
+@keyframes slideOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* 任务标签进入 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 旋转加载 */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 脉冲效果 */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* 应用动画 */
+.task-item {
+    animation: slideInUp 0.3s ease-out;
+}
+
+.task-item.remove {
+    animation: slideOutDown 0.3s ease-in forwards;
+}
+
+.task-tag {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 任务项样式 */
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+}
+
+/* 复选框样式 */
+.task-checkbox {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    accent-color: #3b82f6;
+}
+
+/* 任务文本 */
+.task-text {
+    flex: 1;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.task-detail {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+/* 标签样式 */
+.task-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* 分类徽章 */
+.category-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* 优先级指示器 */
+.priority-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.priority-high .priority-indicator {
+    background-color: #ef4444;
+}
+
+.priority-medium .priority-indicator {
+    background-color: #f59e0b;
+}
+
+.priority-low .priority-indicator {
+    background-color: #10b981;
+}
+
+/* 按钮样式 */
+.task-btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.task-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.task-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.task-btn.edit:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+/* 主题过渡 */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 侧边框颜色过渡 */
+.priority-high, .priority-medium, .priority-low {
+    transition: border-color 0.3s ease;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-detail {
+        width: 100%;
+    }
+
+    .task-actions {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+
+    .task-btn {
+        flex: 1;
+    }
+}
